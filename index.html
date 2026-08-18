@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIVECOM — Sistema Integrado de Venda e Compra</title>
+<meta name="description" content="O SIVECOM une corretores parceiros, condomínios, compradores e vendedores em um único portal exclusivo. Atendimento personalizado, exclusividade de território e resultados compartilhados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* paleta dos mockups Pixel Perfect Replica */
+    --creme:#FBF8F1;
+    --creme-claro:#FCF9F4;
+    --creme-cartao:#F9F4E8;
+    --branco:#FFFFFF;
+    --tinta:#2B2620;
+    --corpo:#6E675C;
+    --suave:#8A8478;
+    --ouro:#A8853B;
+    --ouro-claro:#C9A45C;
+    --ouro-escuro:#8C6B26;
+    --fio:#E9E2D2;
+    --fio-ouro:rgba(168,133,59,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Lato',sans-serif;
+    font-weight:400;
+    color:var(--corpo);
+    background:var(--creme);
+    line-height:1.75;
+    font-size:16.5px;
+    overflow-x:clip;
+  }
+  h1,h2,h3{font-family:'Cormorant Garamond',serif;color:var(--tinta);font-weight:500;line-height:1.16}
+  .grade>*,.cartoes>*,.hero-stats>*,.repartes>*{min-width:0}
+
+  .container{max-width:1160px;margin:0 auto;padding:0 28px}
+
+  .eyebrow{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    letter-spacing:.38em;
+    text-transform:uppercase;
+    color:var(--ouro);
+    margin-bottom:22px;
+  }
+  .titulo{
+    font-size:clamp(34px,4.4vw,54px);
+    margin-bottom:26px;
+  }
+  .divisor{
+    border:none;width:96px;height:1px;
+    background:var(--ouro-claro);
+    margin:0 0 30px;
+  }
+  .centro{text-align:center}
+  .centro .divisor{margin-left:auto;margin-right:auto}
+  .lead{max-width:700px;font-size:17.5px;font-weight:300}
+  .centro .lead{margin:0 auto}
+
+  /* ---------- Botões ---------- */
+  .btn{
+    display:inline-block;text-decoration:none;cursor:pointer;
+    font-family:'Lato',sans-serif;
+    font-size:12.5px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;
+    padding:17px 34px;
+    border:none;
+    transition:filter .2s, background .2s, color .2s;
+  }
+  .btn-ouro{
+    background:linear-gradient(105deg,#C9A45C 0%,#A8853B 55%,#8C6B26 100%);
+    color:#FDFBF5;
+  }
+  .btn-ouro:hover{filter:brightness(1.08)}
+  .btn-linha{
+    border:1px solid var(--ouro-claro);
+    color:var(--ouro);
+    padding:16px 33px;
+    background:transparent;
+  }
+  .btn-linha:hover{background:rgba(201,164,92,.10)}
+  .btn:focus-visible{outline:2px solid var(--ouro-escuro);outline-offset:3px}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(251,248,241,.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--fio);
+  }
+  .header-inner{
+    max-width:1280px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .logo-link{display:block;flex:none}
+  .logo-link img{height:44px;width:auto;display:block}
+  nav{display:flex;align-items:center;gap:34px}
+  nav a{
+    text-decoration:none;color:var(--suave);
+    font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
+    transition:color .2s;
+    white-space:nowrap;
+  }
+  nav a:hover{color:var(--ouro)}
+  nav a.destaque{
+    background:linear-gradient(105deg,#C9A45C 0%,#A8853B 55%,#8C6B26 100%);
+    color:#FDFBF5;
+    padding:13px 26px;
+  }
+  nav a.destaque:hover{color:#fff;filter:brightness(1.08)}
+  nav a:focus-visible{outline:2px solid var(--ouro-escuro);outline-offset:3px}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:10px 4px}
+  .menu-btn span{display:block;width:26px;height:1.5px;background:var(--tinta);margin:6px 0}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:
+      linear-gradient(90deg, var(--creme) 0%, rgba(251,248,241,.95) 34%, rgba(251,248,241,.74) 56%, rgba(251,248,241,.28) 78%, rgba(251,248,241,.06) 100%),
+      url('assets/predio.jpeg') right center / cover no-repeat,
+      var(--creme);
+  }
+  .hero-inner{
+    max-width:1280px;margin:0 auto;
+    padding:110px 28px 72px;
+  }
+  .hero .eyebrow{color:var(--ouro);margin-bottom:30px}
+  .hero h1{
+    font-size:clamp(44px,6.2vw,78px);
+    font-weight:500;
+    max-width:1020px;
+    margin-bottom:34px;
+  }
+  .hero h1 .destaque{color:var(--ouro)}
+  .hero p{
+    max-width:560px;font-size:19px;font-weight:300;color:var(--corpo);
+    margin-bottom:44px;
+  }
+  .hero-ctas{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:84px}
+  .hero-stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:40px;
+    border-top:1px solid var(--fio);
+    padding-top:38px;
+    max-width:820px;
+  }
+  .hero-stats .valor{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;color:var(--ouro-escuro);line-height:1;
+    margin-bottom:10px;font-weight:500;
+  }
+  .hero-stats .rotulo{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--suave);
+    line-height:1.7;
+  }
+
+  /* ---------- Seções ---------- */
+  section{padding:104px 0}
+
+  /* grade de células com fios finos */
+  .grade{
+    display:grid;
+    gap:1px;
+    background:var(--fio);
+    border:1px solid var(--fio);
+    margin-top:64px;
+    text-align:left;
+  }
+  .grade.colunas-3{grid-template-columns:repeat(3,1fr)}
+  .grade.colunas-4{grid-template-columns:repeat(4,1fr)}
+  .celula{background:var(--creme-claro);padding:36px 32px}
+  .celula::before{
+    content:"";display:block;width:32px;height:2px;
+    background:var(--ouro-claro);margin-bottom:22px;
+  }
+  .celula h3{font-size:21.5px;margin-bottom:10px;font-weight:500}
+  .celula p{font-size:14.5px;line-height:1.75}
+
+  /* ---------- Banda dourada (Círculo Virtuoso) ---------- */
+  .ouro-banda{
+    background:
+      radial-gradient(ellipse 90% 130% at 24% -10%, rgba(255,244,214,.45), transparent 55%),
+      linear-gradient(118deg,#8C6B26 0%,#B4924A 28%,#D3B268 50%,#A98740 74%,#7E5F20 100%);
+    color:#FCF9F4;
+    text-align:center;
+  }
+  .ouro-banda .eyebrow{color:#F3E7C3}
+  .ouro-banda h2{color:#FDFBF5}
+  .ouro-banda .divisor{background:rgba(253,251,245,.55);margin-left:auto;margin-right:auto}
+  .ouro-banda .lead{color:#FAF3E0;margin:0 auto}
+  .repartes{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    max-width:900px;margin:60px auto 0;
+  }
+  .reparte{
+    background:var(--creme-claro);
+    padding:40px 24px 34px;
+  }
+  .reparte .valor{
+    font-family:'Cormorant Garamond',serif;
+    font-size:52px;line-height:1;color:var(--ouro-escuro);
+    margin-bottom:14px;font-weight:500;
+  }
+  .reparte .nome{
+    font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--tinta);
+    margin-bottom:6px;
+  }
+  .reparte .sub{font-size:13px;color:var(--suave)}
+  .ouro-banda .legenda{
+    font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;
+    color:#FDF7E4;margin-top:56px;
+  }
+
+  /* ---------- Cartões comprar / vender ---------- */
+  .cartoes{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:72px;text-align:left}
+  .cartao{
+    background:var(--branco);
+    border:1px solid var(--fio);
+    padding:52px 48px;
+    display:flex;flex-direction:column;
+  }
+  .cartao.tonal{background:var(--creme-cartao);border-color:var(--fio-ouro)}
+  .cartao .eyebrow{margin-bottom:18px;letter-spacing:.3em}
+  .cartao h3{font-size:28px;margin-bottom:30px}
+  .cartao ul{list-style:none;flex:1}
+  .cartao li{
+    position:relative;
+    padding:8px 0 8px 34px;
+    font-size:15px;
+  }
+  .cartao li::before{
+    content:"";position:absolute;left:2px;top:16px;
+    width:12px;height:6px;
+    border-left:1.5px solid var(--ouro);border-bottom:1.5px solid var(--ouro);
+    transform:rotate(-45deg);
+  }
+  .cartao .btn{margin-top:38px;align-self:flex-start}
+
+  /* ---------- Citação corretores ---------- */
+  .citacao{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(24px,2.6vw,30px);
+    color:#9C6F2F;
+    max-width:46ch;
+    margin:88px auto 40px;
+    line-height:1.45;
+    text-align:center;
+  }
+
+  /* ---------- Formulário ---------- */
+  .formulario{background:var(--creme-claro);border-top:1px solid var(--fio)}
+  .form-wrap{
+    max-width:720px;margin:64px auto 0;
+    background:var(--branco);
+    border:1px solid var(--fio);
+    padding:56px 52px;
+  }
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 24px}
+  .campo{display:flex;flex-direction:column;text-align:left}
+  .campo.full{grid-column:1 / -1}
+  .campo label{
+    font-size:14px;font-weight:400;color:#4A443B;
+    margin-bottom:8px;
+  }
+  .campo input,.campo select,.campo textarea{
+    font-family:'Lato',sans-serif;font-size:15px;font-weight:300;color:var(--tinta);
+    border:1px solid #D8D2C2;
+    padding:12px 14px;background:var(--branco);
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .campo input:focus,.campo select:focus,.campo textarea:focus{
+    outline:none;border-color:var(--ouro);
+    box-shadow:0 0 0 3px rgba(201,164,92,.22);
+  }
+  .form-acao{margin-top:40px;text-align:center}
+  .form-acao .btn{width:100%}
+  .form-msg{display:none;margin-top:18px;text-align:center;font-weight:400;color:var(--ouro-escuro)}
+  .form-privacidade{font-size:12.5px;text-align:center;margin-top:14px;color:var(--suave)}
+
+  /* ---------- Rodapé ---------- */
+  footer{
+    border-top:1px solid var(--fio);
+    text-align:center;
+    padding:72px 28px 0;
+    background:var(--creme);
+  }
+  .footer-logo{width:min(250px,64vw);height:auto;margin:0 auto 26px;display:block}
+  footer .lema{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:21px;color:#9C6F2F;
+    margin-bottom:34px;
+  }
+  .footer-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;margin-bottom:34px}
+  .footer-nav a{
+    color:var(--suave);text-decoration:none;
+    font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+    transition:color .2s;
+  }
+  .footer-nav a:hover{color:var(--ouro)}
+  footer .creditos{
+    border-top:1px solid var(--fio);
+    padding:26px 0 30px;
+    font-size:12.5px;color:var(--suave);font-weight:300;
+  }
+
+  /* ---------- Objetivo do projeto / diagrama da rede ---------- */
+  .conectar-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+    margin-top:72px;text-align:left;
+  }
+  .conectar-grid>*{min-width:0}
+  .objetivo-lista{list-style:none}
+  .objetivo-lista li{
+    display:flex;gap:26px;padding:24px 0;align-items:baseline;
+    border-bottom:1px solid var(--fio);
+  }
+  .objetivo-lista li:first-child{border-top:1px solid var(--fio)}
+  .objetivo-lista .num{
+    font-family:'Cormorant Garamond',serif;
+    font-size:30px;color:var(--ouro-claro);line-height:1;
+    flex:none;width:40px;
+  }
+  .objetivo-lista h3{font-size:21px;margin-bottom:4px}
+  .objetivo-lista p{font-size:14.5px}
+  .diagrama{display:flex;align-items:center;justify-content:center}
+  .diagrama svg{width:100%;max-width:480px;height:auto}
+  @media (prefers-reduced-motion:no-preference){
+    .diagrama .orbita{animation:girar 70s linear infinite;transform-origin:260px 260px}
+    @keyframes girar{to{transform:rotate(360deg)}}
+    .diagrama .no-rotulo{animation:contra-girar 70s linear infinite;transform-origin:center;transform-box:fill-box}
+    @keyframes contra-girar{to{transform:rotate(-360deg)}}
+  }
+
+  /* ---------- Simulação de uma venda ---------- */
+  .simulacao{max-width:860px;margin:72px auto 0;text-align:left}
+  .sim-etapa{margin-bottom:46px}
+  .sim-cabeca{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    margin-bottom:14px;flex-wrap:wrap;
+  }
+  .sim-cabeca .rotulo{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--suave)}
+  .sim-cabeca .valor{font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--tinta)}
+  .sim-barra{
+    display:flex;height:52px;
+    border:1px solid var(--fio);
+    background:var(--creme-claro);
+    overflow:hidden;
+  }
+  .sim-seg{
+    width:0;display:flex;align-items:center;justify-content:center;
+    white-space:nowrap;overflow:hidden;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    transition:width 1.1s cubic-bezier(.25,.6,.3,1);
+  }
+  .simulacao.visivel .sim-seg{width:var(--w)}
+  .seg-cheio{background:var(--creme-cartao);color:#6E5E3A}
+  .seg-ouro{background:linear-gradient(105deg,#C9A45C 0%,#A8853B 60%,#8C6B26 100%);color:#FDFBF5}
+  .seg-escuro{background:#7E5F20;color:#F3E7C3}
+  .sim-legenda{display:flex;gap:10px 28px;flex-wrap:wrap;margin-top:12px}
+  .sim-legenda span{font-size:13px;color:var(--corpo);display:flex;align-items:center;gap:9px}
+  .sim-legenda i{width:10px;height:10px;flex:none;display:inline-block}
+  .sim-legenda .dot-cheio{background:var(--creme-cartao);border:1px solid var(--fio-ouro)}
+  .sim-legenda .dot-ouro{background:linear-gradient(105deg,#C9A45C,#8C6B26)}
+  .sim-legenda .dot-escuro{background:#7E5F20}
+  .sim-destaque{
+    margin-top:8px;
+    background:var(--creme-cartao);
+    border:1px solid var(--fio-ouro);
+    padding:40px 44px;
+    display:flex;align-items:center;gap:40px;flex-wrap:wrap;
+  }
+  .sim-destaque .numero{
+    font-family:'Cormorant Garamond',serif;
+    font-size:78px;line-height:1;color:var(--ouro-escuro);font-weight:500;
+  }
+  .sim-destaque .texto{flex:1;min-width:240px}
+  .sim-destaque .texto strong{
+    display:block;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--tinta);font-weight:400;margin-bottom:8px;
+  }
+  .sim-destaque .texto p{font-size:14.5px}
+
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visivel{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .sim-seg{transition:none;width:var(--w)}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Impressão / PDF ---------- */
+  @media print{
+    @page{size:1280px 12360px;margin:0}
+    header{position:static;background:var(--creme)}
+    .menu-btn{display:none}
+    .reveal{opacity:1;transform:none;transition:none}
+    .sim-seg{transition:none;width:var(--w)}
+    .diagrama .orbita,.diagrama .no-rotulo{animation:none}
+    body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+  /* ---------- Responsivo ---------- */
+  @media (max-width:1020px){
+    nav{gap:22px}
+    .grade.colunas-4{grid-template-columns:1fr 1fr}
+    .cartoes{grid-template-columns:1fr}
+    .hero-stats{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:820px){
+    .menu-btn{display:block}
+    .header-inner{position:relative}
+    nav{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--creme);flex-direction:column;gap:0;
+      border-bottom:1px solid var(--fio);
+      padding:10px 28px 24px;
+    }
+    nav.aberto{display:flex}
+    nav a{padding:14px 0;width:100%;border-bottom:1px solid var(--fio)}
+    nav a.destaque{text-align:center;margin-top:14px;border-bottom:none}
+    section{padding:72px 0}
+    .hero-inner{padding:72px 28px 56px}
+    .hero{background:
+      linear-gradient(180deg, rgba(251,248,241,.96) 0%, rgba(251,248,241,.86) 48%, rgba(251,248,241,.55) 100%),
+      url('assets/predio.jpeg') right center / cover no-repeat,var(--creme)}
+    .hero-ctas{margin-bottom:64px}
+    .grade.colunas-3,.grade.colunas-4{grid-template-columns:1fr}
+    .repartes{grid-template-columns:1fr;max-width:420px}
+    .hero-stats{grid-template-columns:1fr;gap:26px}
+    .cartao{padding:40px 30px}
+    .conectar-grid{grid-template-columns:1fr;gap:48px;margin-top:52px}
+    .sim-cabeca .valor{font-size:22px}
+    .sim-seg{font-size:10.5px;letter-spacing:.08em}
+    .sim-destaque{padding:30px 24px;gap:24px}
+    .sim-destaque .numero{font-size:58px}
+    .form-wrap{padding:40px 26px}
+    .form-grid{grid-template-columns:1fr}
+    .hero-ctas{flex-direction:column}
+    .hero-ctas .btn{width:100%;text-align:center}
+    .cartao .btn{align-self:stretch;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="header-inner">
+    <a class="logo-link" href="#inicio" aria-label="SIVECOM — página inicial">
+      <img src="assets/logo-sivecom.png" alt="SIVECOM — Sistema Integrado de Venda e Compra">
+    </a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false" onclick="alternarMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="menu">
+      <a href="#oque">O que é</a>
+      <a href="#comofunciona">Como funciona</a>
+      <a href="#cliente">Comprar &amp; vender</a>
+      <a href="#condominios">Condomínios</a>
+      <a href="#corretores">Corretores</a>
+      <a class="destaque" href="#formulario">Enviar dados</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio" style="padding:0">
+  <div class="hero-inner">
+    <span class="eyebrow">Sistema Integrado de Venda e Compra</span>
+    <h1>Uma rede nacional de <span class="destaque">parceria participativa</span> no mercado imobiliário</h1>
+    <p>O SIVECOM une corretores parceiros, condomínios, compradores e vendedores em um único portal exclusivo. Atendimento personalizado, exclusividade de território e resultados compartilhados.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-ouro" href="#formulario">Quero comprar ou vender</a>
+      <a class="btn btn-linha" href="#corretores">Sou corretor</a>
+    </div>
+    <div class="hero-stats">
+      <div class="reveal">
+        <div class="valor">1.000</div>
+        <div class="rotulo">Unidades em exclusividade</div>
+      </div>
+      <div class="reveal">
+        <div class="valor">500&nbsp;m</div>
+        <div class="rotulo">Raio de atuação planejada</div>
+      </div>
+      <div class="reveal">
+        <div class="valor">100%</div>
+        <div class="rotulo">Território nacional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== O QUE É ===================== -->
+<section id="oque">
+  <div class="container centro">
+    <span class="eyebrow reveal">O que é</span>
+    <h2 class="titulo reveal">Um jeito novo de negociar imóveis em condomínios</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">SIVECOM significa <strong>Sistema Integrado de Venda e Compra</strong> — um modelo inédito no mercado imobiliário. Cada parceiro atende com exclusividade a sua região e, ao mesmo tempo, está conectado a centenas de outros parceiros pelo portal, com o apoio dos colaboradores de cada condomínio.</p>
+    <div class="grade colunas-3">
+      <div class="celula reveal">
+        <h3>Consultor exclusivo</h3>
+        <p>Cada cliente é atendido por um único parceiro identificado, do início ao fim da negociação.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Portal nacional</h3>
+        <p>Todos os imóveis da rede reunidos em um só lugar, visíveis para clientes do Brasil inteiro.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Feito para condomínios</h3>
+        <p>Segurança na portaria, visitas controladas e valorização dos funcionários em cada negociação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OBJETIVO DO PROJETO ===================== -->
+<section id="objetivo" style="background:var(--creme-claro);border-top:1px solid var(--fio);border-bottom:1px solid var(--fio)">
+  <div class="container">
+    <div class="centro">
+      <span class="eyebrow reveal">Objetivo do projeto</span>
+      <h2 class="titulo reveal">Todo o mercado conectado em um só sistema</h2>
+      <hr class="divisor reveal">
+      <p class="lead reveal">O SIVECOM nasce para unir, em um único portal, todos que participam da vida de um condomínio — do comprador à administradora.</p>
+    </div>
+    <div class="conectar-grid">
+      <ul class="objetivo-lista">
+        <li class="reveal">
+          <span class="num">1</span>
+          <div>
+            <h3>Compradores</h3>
+            <p>Todo tipo de comprador de apartamentos em condomínios, atendido com exclusividade por um consultor.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="num">2</span>
+          <div>
+            <h3>Corretores de imóveis</h3>
+            <p>Todos os corretores parceiros, conectados em uma rede nacional com território exclusivo.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="num">3</span>
+          <div>
+            <h3>Condomínios</h3>
+            <p>Todos os condomínios de apartamentos, com segurança na portaria e premiação para a equipe.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="num">4</span>
+          <div>
+            <h3>Administradoras</h3>
+            <p>As associações de administradoras de condomínios, integradas ao sistema e às negociações.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="diagrama reveal" role="img" aria-label="Diagrama da rede SIVECOM: o portal no centro, conectando compradores, corretores, condomínios e administradoras">
+        <svg viewBox="0 0 520 520">
+          <defs>
+            <linearGradient id="gNucleo" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#C9A45C"/><stop offset="1" stop-color="#8C6B26"/>
+            </linearGradient>
+          </defs>
+          <circle cx="260" cy="260" r="200" fill="none" stroke="#C9A45C" stroke-width="1" stroke-dasharray="2 7" opacity=".6"/>
+          <circle cx="260" cy="260" r="132" fill="none" stroke="#A8853B" stroke-width="1" opacity=".22"/>
+          <g class="orbita">
+            <g stroke="#C9A45C" stroke-width="1" opacity=".5">
+              <line x1="260" y1="260" x2="260" y2="60"/>
+              <line x1="260" y1="260" x2="460" y2="260"/>
+              <line x1="260" y1="260" x2="260" y2="460"/>
+              <line x1="260" y1="260" x2="60" y2="260"/>
+            </g>
+            <g>
+              <circle cx="260" cy="60" r="52" fill="#FCF9F4" stroke="#C9A45C" stroke-width="1"/>
+              <circle cx="460" cy="260" r="52" fill="#FCF9F4" stroke="#C9A45C" stroke-width="1"/>
+              <circle cx="260" cy="460" r="52" fill="#FCF9F4" stroke="#C9A45C" stroke-width="1"/>
+              <circle cx="60" cy="260" r="52" fill="#FCF9F4" stroke="#C9A45C" stroke-width="1"/>
+              <g fill="#8C6B26" font-family="Lato,sans-serif" font-size="9.5" letter-spacing="1.2" text-anchor="middle">
+                <text class="no-rotulo" x="260" y="64">COMPRADORES</text>
+                <text class="no-rotulo" x="460" y="264">CORRETORES</text>
+                <text class="no-rotulo" x="260" y="464">CONDOMÍNIOS</text>
+                <text class="no-rotulo" x="60" y="264" font-size="8">ADMINISTRADORAS</text>
+              </g>
+            </g>
+          </g>
+          <circle cx="260" cy="260" r="66" fill="url(#gNucleo)"/>
+          <text x="260" y="256" fill="#FDFBF5" font-family="Lato,sans-serif" font-size="13" letter-spacing="2.5" text-anchor="middle">SIVECOM</text>
+          <text x="260" y="276" fill="#F3E7C3" font-family="Lato,sans-serif" font-size="9" letter-spacing="1.5" text-anchor="middle">O PORTAL EXCLUSIVO</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÍRCULO VIRTUOSO ===================== -->
+<section class="ouro-banda" id="comofunciona">
+  <div class="container">
+    <span class="eyebrow reveal">Círculo Virtuoso</span>
+    <h2 class="titulo reveal">Você ajudando a todos. Todos ajudando você.</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">O parceiro SIVECOM é o núcleo de milhares de células e, ao mesmo tempo, uma célula de milhares de núcleos. É esse movimento contínuo que sustenta a rede: quem vende encaminha a próxima compra, quem indica participa do resultado.</p>
+    <div class="repartes">
+      <div class="reparte reveal">
+        <div class="valor">40%</div>
+        <div class="nome">Parceiro</div>
+        <div class="sub">Remuneração da venda</div>
+      </div>
+      <div class="reparte reveal">
+        <div class="valor">20%</div>
+        <div class="nome">Mídia viva</div>
+        <div class="sub">Brinde aos colaboradores</div>
+      </div>
+      <div class="reparte reveal">
+        <div class="valor">40%</div>
+        <div class="nome">SIVECOM</div>
+        <div class="sub">Razão social, portal, suporte e fórmula</div>
+      </div>
+    </div>
+    <p class="legenda reveal">Parceiros em todo o território nacional.</p>
+  </div>
+</section>
+
+<!-- ===================== NA PRÁTICA ===================== -->
+<section id="napratica">
+  <div class="container centro">
+    <span class="eyebrow reveal">Na prática</span>
+    <h2 class="titulo reveal">Para onde vai o resultado de uma venda</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">Um exemplo simples: em uma venda de R$ 1.000.000, a remuneração de 6% é dividida entre quem trabalhou — e também premia a equipe do condomínio.</p>
+    <div class="simulacao reveal">
+      <div class="sim-etapa">
+        <div class="sim-cabeca">
+          <span class="rotulo">Venda do imóvel</span>
+          <span class="valor">R$ 1.000.000</span>
+        </div>
+        <div class="sim-barra" aria-hidden="true">
+          <div class="sim-seg seg-cheio" style="--w:100%">Valor de venda · 100%</div>
+        </div>
+      </div>
+      <div class="sim-etapa">
+        <div class="sim-cabeca">
+          <span class="rotulo">Remuneração total · 6% da venda</span>
+          <span class="valor">R$ 60.000</span>
+        </div>
+        <div class="sim-barra" aria-hidden="true">
+          <div class="sim-seg seg-ouro" style="--w:50%;transition-delay:.3s">R$ 30.000</div>
+          <div class="sim-seg seg-escuro" style="--w:50%;transition-delay:.45s">R$ 30.000</div>
+        </div>
+        <div class="sim-legenda">
+          <span><i class="dot-ouro"></i>Corretor parceiro · 3%</span>
+          <span><i class="dot-escuro"></i>SIVECOM · 3%</span>
+        </div>
+      </div>
+      <div class="sim-etapa">
+        <div class="sim-cabeca">
+          <span class="rotulo">A parte do SIVECOM se divide</span>
+          <span class="valor">R$ 30.000</span>
+        </div>
+        <div class="sim-barra" aria-hidden="true">
+          <div class="sim-seg seg-escuro" style="--w:60%;transition-delay:.75s">R$ 18.000</div>
+          <div class="sim-seg seg-ouro" style="--w:40%;transition-delay:.9s">R$ 12.000</div>
+        </div>
+        <div class="sim-legenda">
+          <span><i class="dot-escuro"></i>SIVECOM — razão social, portal e suporte · 60%</span>
+          <span><i class="dot-ouro"></i>Equipe do condomínio · 40%</span>
+        </div>
+      </div>
+      <div class="sim-destaque">
+        <span class="numero" data-contar="18">18</span>
+        <div class="texto">
+          <strong>Pessoas beneficiadas em cada venda</strong>
+          <p>Síndico, zelador, porteiros e equipe de limpeza dividem R$ 12.000 — é a mídia viva do SIVECOM, presente em cada negociação.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARA O CLIENTE ===================== -->
+<section id="cliente">
+  <div class="container centro">
+    <span class="eyebrow reveal">Para o cliente</span>
+    <h2 class="titulo reveal">Quero comprar. Quero vender.</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">Em qualquer um dos caminhos, o parceiro SIVECOM é o seu consultor exclusivo — e o portal trabalha por você em todo o Brasil.</p>
+    <div class="cartoes">
+      <div class="cartao reveal">
+        <span class="eyebrow">Quero comprar</span>
+        <h3>O imóvel que você procura, onde você determinar</h3>
+        <ul>
+          <li>Consultor exclusivo dedicado ao seu interesse, de forma personalizada;</li>
+          <li>Seu consultor traz o imóvel que você procura, onde você determinar — em nível nacional;</li>
+          <li>Facilidade na busca do seu imóvel pelo Portal SIVECOM;</li>
+          <li>Atendimento profissional diferenciado e de qualidade em todo o país;</li>
+          <li>Atendimentos com segurança, privacidade e hora marcada;</li>
+          <li>Comodidade nas negociações e agilidade na conclusão;</li>
+        </ul>
+        <a class="btn btn-ouro" href="#formulario">Falar com um consultor</a>
+      </div>
+      <div class="cartao tonal reveal">
+        <span class="eyebrow">Quero vender</span>
+        <h3>Venda com alcance nacional e já escolha a próxima casa</h3>
+        <ul>
+          <li>Um consultor exclusivo cuida da venda do seu imóvel do início ao fim;</li>
+          <li>Divulgação nacional e simultânea através do Portal SIVECOM;</li>
+          <li>Seleção de opções para a sua futura compra, ao mesmo tempo;</li>
+          <li>Providência e exame de toda a documentação necessária;</li>
+          <li>Centenas de parceiros conectados ampliando o alcance da sua venda;</li>
+          <li>Atendimento ágil, respeitoso e com total privacidade;</li>
+        </ul>
+        <a class="btn btn-linha" href="#formulario">Anunciar meu imóvel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONDOMÍNIOS ===================== -->
+<section id="condominios" style="padding-top:0">
+  <div class="container centro">
+    <span class="eyebrow reveal">O SIVECOM em seu condomínio</span>
+    <h2 class="titulo reveal">Mais segurança na portaria, mais reconhecimento para a equipe</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">Um único parceiro credenciado atende o condomínio — e cada negociação também premia quem cuida dele todos os dias.</p>
+    <div class="grade colunas-3">
+      <div class="celula reveal">
+        <h3>Consultor identificado</h3>
+        <p>Sempre com crachá com foto, nome e código, e atendimento com hora marcada.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Controle na portaria</h3>
+        <p>Livro de visitas com data e hora, e visitas às unidades acompanhadas por um funcionário local.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Equipe premiada</h3>
+        <p>A cada negociação, uma recompensa rateada entre todos os funcionários — inclusive o pessoal da limpeza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CORRETORES ===================== -->
+<section id="corretores" class="formulario" style="background:var(--creme)">
+  <div class="container centro">
+    <span class="eyebrow reveal">Corretores</span>
+    <h2 class="titulo reveal">Sua própria empresa, pronta para funcionar</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">Sem chefe, sem matriz, sem filial: o portal é a sua empresa, e o território é seu — com material físico e virtual fornecido gratuitamente.</p>
+    <div class="grade colunas-4">
+      <div class="celula reveal">
+        <h3>Portal exclusivo</h3>
+        <p>O Portal SIVECOM com exclusividade e postagem ilimitada.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Rede nacional</h3>
+        <p>Apoio de centenas de parceiros em todo o território brasileiro.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Até 1.000 unidades</h3>
+        <p>Exclusividade de até 1.000 unidades à venda, implantadas.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Remuneração digna</h3>
+        <p>Faturamento muito acima da faixa praticada no mercado.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Mídia direta</h3>
+        <p>O equivalente a 50% do seu faturamento em mídia direta para você.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Sua própria empresa</h3>
+        <p>Pessoa jurídica independente, sem vínculo empregatício.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Material gratuito</h3>
+        <p>Todo o material físico e virtual fornecido de forma totalmente gratuita.</p>
+      </div>
+      <div class="celula reveal">
+        <h3>Território seu</h3>
+        <p>Sem chefe, sem matriz nem filial. O portal é a sua empresa, no seu território.</p>
+      </div>
+    </div>
+    <p class="citacao reveal">Corretores em qualquer cidade do Brasil: uma oportunidade única, com valorização profissional equivalente a um pós-graduado.</p>
+    <a class="btn btn-ouro reveal" href="#formulario">Quero ser parceiro</a>
+  </div>
+</section>
+
+<!-- ===================== FORMULÁRIO ===================== -->
+<section class="formulario" id="formulario">
+  <div class="container centro">
+    <span class="eyebrow reveal">Formulário</span>
+    <h2 class="titulo reveal">Envie seus dados</h2>
+    <hr class="divisor reveal">
+    <p class="lead reveal">Preencha o formulário e o SIVECOM entrará em contato. Atendimento com segurança, privacidade e hora marcada.</p>
+    <form class="form-wrap reveal" id="formAdesao" novalidate>
+      <div class="form-grid">
+        <div class="campo full">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="campo">
+          <label for="rg">RG</label>
+          <input type="text" id="rg" name="rg">
+        </div>
+        <div class="campo">
+          <label for="cpf">CPF/MF</label>
+          <input type="text" id="cpf" name="cpf" inputmode="numeric">
+        </div>
+        <div class="campo full">
+          <label for="endereco">Endereço</label>
+          <input type="text" id="endereco" name="endereco" autocomplete="street-address">
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" required>
+        </div>
+        <div class="campo">
+          <label for="estado">Estado</label>
+          <select id="estado" name="estado" required>
+            <option value="">Selecione</option>
+            <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+            <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+            <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+            <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+            <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+            <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+            <option>SP</option><option>SE</option><option>TO</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="telefone">Contatos</label>
+          <input type="tel" id="telefone" name="telefone" autocomplete="tel" required>
+        </div>
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="campo full">
+          <label for="interesse">Seu interesse</label>
+          <select id="interesse" name="interesse" required>
+            <option value="">Selecione uma opção</option>
+            <option>Comprar um imóvel</option>
+            <option>Vender um imóvel</option>
+            <option>Levar o SIVECOM ao meu condomínio</option>
+            <option>Ser um parceiro corretor</option>
+          </select>
+        </div>
+        <div class="campo full">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="form-acao">
+        <button type="submit" class="btn btn-ouro">Enviar dados</button>
+        <p class="form-msg" id="formMsg">Dados prontos para envio! Seu aplicativo de e-mail foi aberto — basta confirmar o envio.</p>
+        <p class="form-privacidade">Seus dados são usados somente para o contato do representante SIVECOM.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer>
+  <img class="footer-logo" src="assets/logo-sivecom.png" alt="SIVECOM — Sistema Integrado de Venda e Compra">
+  <p class="lema">“Uma vez SIVECOM, eternamente SIVECOM.”</p>
+  <div class="footer-nav">
+    <a href="#oque">O que é</a>
+    <a href="#comofunciona">Como funciona</a>
+    <a href="#cliente">Comprar &amp; vender</a>
+    <a href="#condominios">Condomínios</a>
+    <a href="#corretores">Corretores</a>
+    <a href="#formulario">Enviar dados</a>
+  </div>
+  <div class="creditos">
+    contato@sivecom.com.br — Parceiros em todo o território nacional<br>
+    SIVECOM — Sistema Integrado de Venda e Compra. Todos os direitos reservados.
+  </div>
+</footer>
+
+<script>
+  function alternarMenu(btn){
+    const menu = document.getElementById('menu');
+    const aberto = menu.classList.toggle('aberto');
+    btn.setAttribute('aria-expanded', aberto);
+  }
+  document.querySelectorAll('#menu a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('menu').classList.remove('aberto'))
+  );
+
+  // Revelação suave ao rolar + contadores
+  const reduzirMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function contar(el){
+    const alvo = parseInt(el.dataset.contar, 10);
+    if (reduzirMovimento){ el.textContent = alvo; return; }
+    const dur = 1400;
+    let t0;
+    const passo = t => {
+      if (!t0) t0 = t;
+      const p = Math.min(1, (t - t0) / dur);
+      el.textContent = Math.round(alvo * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(passo);
+    };
+    requestAnimationFrame(passo);
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        e.target.classList.add('visivel');
+        e.target.querySelectorAll('[data-contar]').forEach(contar);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Envio do formulário via e-mail (sem servidor)
+  document.getElementById('formAdesao').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if (!this.reportValidity()) return;
+    const d = new FormData(this);
+    const corpo = [
+      'Interesse: ' + d.get('interesse'),
+      'Nome: ' + d.get('nome'),
+      'RG: ' + (d.get('rg') || '-'),
+      'CPF/MF: ' + (d.get('cpf') || '-'),
+      'Endereço: ' + (d.get('endereco') || '-'),
+      'Cidade: ' + d.get('cidade') + ' - ' + d.get('estado'),
+      'Contatos: ' + d.get('telefone'),
+      'E-mail: ' + d.get('email'),
+      '',
+      'Mensagem:',
+      d.get('mensagem') || '-'
+    ].join('\n');
+    window.location.href = 'mailto:contato@sivecom.com.br'
+      + '?subject=' + encodeURIComponent('Adesão SIVECOM — ' + d.get('nome'))
+      + '&body=' + encodeURIComponent(corpo);
+    document.getElementById('formMsg').style.display = 'block';
+  });
+</script>
+</body>
+</html>
